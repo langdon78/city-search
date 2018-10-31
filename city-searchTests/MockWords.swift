@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+let mockWords = [
+    "Apple",
+    "Banana",
+    "Carrot",
+    "Cucumber",
+    "pineapple",
+    "fruit Salad",
+    "2 kiwis"
+]
