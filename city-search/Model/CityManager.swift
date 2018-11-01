@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Cities: WordTrie {
+class CityManager: WordTrie {
     
     private var duplicateNames: [String: [City]] = [:]
     private var newCities: [String: City] = [:]
