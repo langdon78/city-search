@@ -8,11 +8,18 @@
 
 import Foundation
 
+protocol ProgressDelegate {
+    func fileLoaded()
+    func loadingDataTrie(_ percent: Float)
+}
+
 class CityManager: WordTrie {
     var fetchTask: DispatchWorkItem?
     
     private var cityMap: [String: [City]] = [:]
     private var cityCount: Int = 0
+    
+    var delegate: ProgressDelegate?
     
     override public var count: Int {
         return cityCount
@@ -20,15 +27,18 @@ class CityManager: WordTrie {
     
     var allCities: [City] = []
     
-    override init() {}
+    init(delegate: ProgressDelegate?) {
+        self.delegate = delegate
+    }
     
-    convenience init?(data: Data?) {
-        self.init()
+    convenience init?(data: Data?, delegate: ProgressDelegate?) {
+        self.init(delegate: delegate)
         guard let data = data else { return nil }
         let decoder = JSONDecoder()
         var cities: [City] = []
         do {
             cities = try decoder.decode([City].self, from: data)
+            delegate?.fileLoaded()
             insert(cities: cities)
         } catch {
             print(error)
@@ -37,8 +47,8 @@ class CityManager: WordTrie {
     
     func insert(cities: [City]) {
         for city in cities {
-//            print(round(Double(cityCount) / Double(cities.count) * 100))
             self.insert(city: city)
+            delegate?.loadingDataTrie(Float(cityCount) / Float(cities.count))
         }
         self.cities(for: words) { [weak self] cities in
             guard let cities = cities else { return }
