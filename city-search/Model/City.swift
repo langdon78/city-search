@@ -18,4 +18,8 @@ struct City: Codable {
     var name: String
     var _id: Int
     var coord: Coordinate
+    
+    var fullName: String {
+        return "\(name), \(country)"
+    }
 }
