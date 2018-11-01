@@ -22,6 +22,8 @@
 		BC2D9B90218A4AA700AE1709 /* MockCityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */; };
 		BC2D9B93218A5C8B00AE1709 /* WordTrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */; };
 		BC2D9B95218A61E800AE1709 /* MockWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B94218A61E800AE1709 /* MockWords.swift */; };
+		BC2D9B97218B6C0200AE1709 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B96218B6C0200AE1709 /* LoadingViewController.swift */; };
+		BC2D9B99218B992E00AE1709 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B98218B992E00AE1709 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCityData.swift; sourceTree = "<group>"; };
 		BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTrieTests.swift; sourceTree = "<group>"; };
 		BC2D9B94218A61E800AE1709 /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
+		BC2D9B96218B6C0200AE1709 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		BC2D9B98218B992E00AE1709 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				BC2D9B80218A0F5200AE1709 /* Resources */,
 				BC2D9B60218A0DC400AE1709 /* AppDelegate.swift */,
 				BC2D9B62218A0DC400AE1709 /* SearchViewController.swift */,
+				BC2D9B96218B6C0200AE1709 /* LoadingViewController.swift */,
+				BC2D9B98218B992E00AE1709 /* MapViewController.swift */,
 			);
 			path = "city-search";
 			sourceTree = "<group>";
@@ -252,6 +258,8 @@
 				BC2D9B85218A107000AE1709 /* WordTrie.swift in Sources */,
 				BC2D9B8A218A12BE00AE1709 /* City.swift in Sources */,
 				BC2D9B63218A0DC400AE1709 /* SearchViewController.swift in Sources */,
+				BC2D9B97218B6C0200AE1709 /* LoadingViewController.swift in Sources */,
+				BC2D9B99218B992E00AE1709 /* MapViewController.swift in Sources */,
 				BC2D9B88218A111200AE1709 /* FileLoader.swift in Sources */,
 				BC2D9B8C218A39D700AE1709 /* CityManager.swift in Sources */,
 				BC2D9B61218A0DC400AE1709 /* AppDelegate.swift in Sources */,
