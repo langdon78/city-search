@@ -10,12 +10,6 @@ import Foundation
 
 class WordTrie {
     
-    enum InsertResult {
-        case empty
-        case new
-        case exists
-    }
-    
     public var count: Int {
         return wordCount
     }
@@ -39,9 +33,9 @@ class WordTrie {
     ///
     /// - Parameter word: the word to be inserted.
     /// - Returns: outcome of attempted insert
-    public func insert(word: String) -> InsertResult {
+    public func insert(word: String) {
         guard !word.isEmpty else {
-            return .empty
+            return
         }
         
         // Visit node for existing characters or create new node
@@ -56,12 +50,11 @@ class WordTrie {
         }
 
         guard !currentNode.isEnd else {
-            return .exists
+            return
         }
         
         wordCount += 1
         currentNode.isEnd = true
-        return .new
     }
     
     /// Returns an array of words in a subtrie of the trie that start
@@ -70,19 +63,19 @@ class WordTrie {
     /// - Parameters:
     ///   - prefix: the letters for word prefix
     /// - Returns: the words in the subtrie that start with prefix
-    public func findWordsWithPrefix(prefix: String) -> [String] {
+    public func findWordsWithPrefix(prefix: String, completion: @escaping ([String]?) -> Void) {
         var words = [String]()
         let prefixLowerCased = prefix.lowercased()
-        if let lastNode = findLastNodeOf(word: prefixLowerCased) {
+        if let lastNode = self.findLastNodeOf(word: prefixLowerCased) {
             if lastNode.isEnd {
                 words.append(prefixLowerCased)
             }
             for childNode in lastNode.children.values {
-                let childWords = wordsInSubtrie(rootNode: childNode, partialWord: prefixLowerCased)
+                let childWords = self.wordsInSubtrie(rootNode: childNode, partialWord: prefixLowerCased)
                 words += childWords
             }
         }
-        return words
+        completion(words)
     }
     
     /// Attempts to walk to the last node of a word.  The
