@@ -27,16 +27,16 @@ class WordTrieTests: XCTestCase {
     }
     
     func testInsertDataValues() {
-        XCTAssertEqual(wordTrie!.words.sorted(), mockWords.sorted())
+        let lowercasedMockWords = mockWords.map { $0.lowercased() }
+        XCTAssertEqual(wordTrie!.words.sorted(), lowercasedMockWords.sorted())
     }
     
     func testInsertEmpty() {
         // given
         let emptyString = ""
         // when
-        let insertResult = wordTrie!.insert(word: emptyString)
+        wordTrie!.insert(word: emptyString)
         // then
-        XCTAssertTrue(insertResult == .empty)
         testInsertDataCount()
         testInsertDataValues()
     }
@@ -45,29 +45,28 @@ class WordTrieTests: XCTestCase {
         // given
         let existsString = "Apple"
         // when
-        let insertResult = wordTrie!.insert(word: existsString)
+        wordTrie!.insert(word: existsString)
         // then
-        XCTAssertTrue(insertResult == .exists)
         testInsertDataCount()
         testInsertDataValues()
     }
     
     func testFetchPrefix() {
         // given
-        let prefixString = "A"
-        // when
-        let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
-        // then
-        XCTAssertTrue(fetchResult == ["Apple"])
-    }
-    
-    func testFetchPrefixCaseSensitive() {
-        // given
         let prefixString = "a"
         // when
         let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
         // then
-        XCTAssertTrue(fetchResult != ["Apple"])
+        XCTAssertTrue(fetchResult == ["apple"])
+    }
+    
+    func testFetchPrefixCaseSensitive() {
+        // given
+        let prefixString = "A"
+        // when
+        let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
+        // then
+        XCTAssertTrue(fetchResult == ["apple"])
     }
     
     func testFetchPrefixMultipleCharacters() {
@@ -76,7 +75,7 @@ class WordTrieTests: XCTestCase {
         // when
         let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
         // then
-        XCTAssertTrue(fetchResult == ["Apple"])
+        XCTAssertTrue(fetchResult == ["apple"])
     }
     
     func testFetchPrefixMultipleMatches() {
@@ -85,7 +84,7 @@ class WordTrieTests: XCTestCase {
         // when
         let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
         // then
-        XCTAssertTrue(fetchResult?.sorted() == ["Carrot","Cucumber"])
+        XCTAssertTrue(fetchResult?.sorted() == ["carrot","cucumber"])
     }
 
     private func loadMockData() {
