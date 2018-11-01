@@ -17,8 +17,14 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let data = FileLoader.load()
-        cityManager = CityManager(data: data)
+        searchBar.isHidden = true
+        DispatchQueue.global().async { [weak self] in
+            let data = FileLoader.load()
+            self?.cityManager = CityManager(data: data)
+            DispatchQueue.main.async {
+                self?.searchBar.isHidden = false
+            }
+        }
         displayedCities = cityManager?.allCities ?? []
         tableView.reloadData()
     }
@@ -44,12 +50,16 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            displayedCities = cityManager?.allCities ?? []
-        } else {
-            displayedCities = cityManager?.fetch(with: searchText) ?? []
+        cityManager?.executeFetchTask(with: searchText) { [weak self] cities in
+            guard let cities = cities else { return }
+            self?.handleDisplay(for: cities)
         }
-        tableView.reloadData()
     }
-
+    
+    fileprivate func handleDisplay(for cities: [City]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.displayedCities = cities
+            self?.tableView.reloadData()
+        }
+    }
 }
