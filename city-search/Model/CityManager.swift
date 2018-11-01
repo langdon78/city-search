@@ -18,9 +18,7 @@ class CityManager: WordTrie {
         return cityCount
     }
     
-    var cities: [City] {
-        return allCities(for: words)
-    }
+    var allCities: [City] = []
     
     override init() {}
     
@@ -42,10 +40,11 @@ class CityManager: WordTrie {
 //            print(round(Double(cityCount) / Double(cities.count) * 100))
             self.insert(city: city)
         }
+        self.allCities = self.cities(for: words)
     }
     
     func insert(city: City) {
-        let cityString = city.name + ", " + city.country
+        let cityString = (city.name + ", " + city.country).lowercased()
         let result = insert(word: cityString)
         switch result {
         case .exists:
@@ -66,13 +65,13 @@ class CityManager: WordTrie {
     
     func fetch(with prefix: String) -> [City] {
         let words = findWordsWithPrefix(prefix: prefix)
-        return allCities(for: words)
+        return cities(for: words)
     }
     
-    private func allCities(for words: [String]) -> [City] {
+    private func cities(for words: [String]) -> [City] {
         let new: [City] = words.compactMap { newCities[$0] }
         let existing: [City] = words.compactMap { duplicateNames[$0] }.flatMap { $0 }
-        return new + existing
+        return (new + existing).sorted(by: { $0.name < $1.name })
     }
     
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC2D9B61218A0DC400AE1709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B60218A0DC400AE1709 /* AppDelegate.swift */; };
-		BC2D9B63218A0DC400AE1709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B62218A0DC400AE1709 /* ViewController.swift */; };
+		BC2D9B63218A0DC400AE1709 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B62218A0DC400AE1709 /* SearchViewController.swift */; };
 		BC2D9B66218A0DC400AE1709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B64218A0DC400AE1709 /* Main.storyboard */; };
 		BC2D9B68218A0DC500AE1709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B67218A0DC500AE1709 /* Assets.xcassets */; };
 		BC2D9B6B218A0DC500AE1709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B69218A0DC500AE1709 /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 		BC2D9B85218A107000AE1709 /* WordTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B84218A107000AE1709 /* WordTrie.swift */; };
 		BC2D9B88218A111200AE1709 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B87218A111200AE1709 /* FileLoader.swift */; };
 		BC2D9B8A218A12BE00AE1709 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B89218A12BE00AE1709 /* City.swift */; };
-		BC2D9B8C218A39D700AE1709 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8B218A39D700AE1709 /* Cities.swift */; };
+		BC2D9B8C218A39D700AE1709 /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8B218A39D700AE1709 /* CityManager.swift */; };
 		BC2D9B8E218A3C2600AE1709 /* CharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8D218A3C2600AE1709 /* CharacterNode.swift */; };
 		BC2D9B90218A4AA700AE1709 /* MockCityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */; };
 		BC2D9B93218A5C8B00AE1709 /* WordTrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		BC2D9B5D218A0DC400AE1709 /* city-search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "city-search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2D9B60218A0DC400AE1709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BC2D9B62218A0DC400AE1709 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BC2D9B62218A0DC400AE1709 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BC2D9B65218A0DC400AE1709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC2D9B67218A0DC500AE1709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC2D9B6A218A0DC500AE1709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		BC2D9B84218A107000AE1709 /* WordTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTrie.swift; sourceTree = "<group>"; };
 		BC2D9B87218A111200AE1709 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
 		BC2D9B89218A12BE00AE1709 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		BC2D9B8B218A39D700AE1709 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
+		BC2D9B8B218A39D700AE1709 /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
 		BC2D9B8D218A3C2600AE1709 /* CharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNode.swift; sourceTree = "<group>"; };
 		BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCityData.swift; sourceTree = "<group>"; };
 		BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTrieTests.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 				BC2D9B81218A0F8F00AE1709 /* Storyboards */,
 				BC2D9B80218A0F5200AE1709 /* Resources */,
 				BC2D9B60218A0DC400AE1709 /* AppDelegate.swift */,
-				BC2D9B62218A0DC400AE1709 /* ViewController.swift */,
+				BC2D9B62218A0DC400AE1709 /* SearchViewController.swift */,
 			);
 			path = "city-search";
 			sourceTree = "<group>";
@@ -138,7 +138,7 @@
 		BC2D9B86218A107700AE1709 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC2D9B8B218A39D700AE1709 /* Cities.swift */,
+				BC2D9B8B218A39D700AE1709 /* CityManager.swift */,
 				BC2D9B89218A12BE00AE1709 /* City.swift */,
 				BC2D9B87218A111200AE1709 /* FileLoader.swift */,
 				BC2D9B8D218A3C2600AE1709 /* CharacterNode.swift */,
@@ -251,9 +251,9 @@
 			files = (
 				BC2D9B85218A107000AE1709 /* WordTrie.swift in Sources */,
 				BC2D9B8A218A12BE00AE1709 /* City.swift in Sources */,
-				BC2D9B63218A0DC400AE1709 /* ViewController.swift in Sources */,
+				BC2D9B63218A0DC400AE1709 /* SearchViewController.swift in Sources */,
 				BC2D9B88218A111200AE1709 /* FileLoader.swift in Sources */,
-				BC2D9B8C218A39D700AE1709 /* Cities.swift in Sources */,
+				BC2D9B8C218A39D700AE1709 /* CityManager.swift in Sources */,
 				BC2D9B61218A0DC400AE1709 /* AppDelegate.swift in Sources */,
 				BC2D9B8E218A3C2600AE1709 /* CharacterNode.swift in Sources */,
 			);

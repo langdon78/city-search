@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         let data = FileLoader.load()
         cityManager = CityManager(data: data)
-        displayedCities = Array(cityManager?.cities[0...40] ?? [])
+        displayedCities = cityManager?.allCities ?? []
         tableView.reloadData()
     }
 
@@ -45,9 +45,10 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            displayedCities = cityManager?.cities ?? []
+            displayedCities = cityManager?.allCities ?? []
+        } else {
+            displayedCities = cityManager?.fetch(with: searchText) ?? []
         }
-        displayedCities = Array(cityManager?.fetch(with: searchText)[0...40] ?? [])
         tableView.reloadData()
     }
 

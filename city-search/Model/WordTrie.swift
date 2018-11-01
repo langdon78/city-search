@@ -46,7 +46,7 @@ class WordTrie {
         
         // Visit node for existing characters or create new node
         var currentNode = root
-        for character in word {
+        for character in word.lowercased() {
             if let childNode = currentNode.children[character] {
                 currentNode = childNode
             } else {
@@ -72,7 +72,7 @@ class WordTrie {
     /// - Returns: the words in the subtrie that start with prefix
     public func findWordsWithPrefix(prefix: String) -> [String] {
         var words = [String]()
-        let prefixLowerCased = prefix
+        let prefixLowerCased = prefix.lowercased()
         if let lastNode = findLastNodeOf(word: prefixLowerCased) {
             if lastNode.isEnd {
                 words.append(prefixLowerCased)
@@ -90,7 +90,7 @@ class WordTrie {
     /// check if the node is terminating
     private func findLastNodeOf(word: String) -> CharacterNode? {
         var currentNode = root
-        for character in word {
+        for character in word.lowercased() {
             guard let childNode = currentNode.children[character] else {
                 return nil
             }
