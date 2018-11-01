@@ -9,9 +9,9 @@
 import Foundation
 
 class CityManager: WordTrie {
+    var fetchTask: DispatchWorkItem?
     
-    private var duplicateNames: [String: [City]] = [:]
-    private var newCities: [String: City] = [:]
+    private var cityMap: [String: [City]] = [:]
     private var cityCount: Int = 0
     
     override public var count: Int {
@@ -40,38 +40,60 @@ class CityManager: WordTrie {
 //            print(round(Double(cityCount) / Double(cities.count) * 100))
             self.insert(city: city)
         }
-        self.allCities = self.cities(for: words)
-    }
-    
-    func insert(city: City) {
-        let cityString = (city.name + ", " + city.country).lowercased()
-        let result = insert(word: cityString)
-        switch result {
-        case .exists:
-            if var dupCity = duplicateNames[cityString] {
-                dupCity.append(city)
-                duplicateNames.updateValue(dupCity, forKey: cityString)
-            } else {
-                duplicateNames[cityString] = [city]
-            }
-            cityCount += 1
-        case .new:
-            newCities[cityString] = city
-            cityCount += 1
-        case .empty:
-            return
+        self.cities(for: words) { [weak self] cities in
+            guard let cities = cities else { return }
+            self?.allCities = cities
         }
     }
     
-    func fetch(with prefix: String) -> [City] {
-        let words = findWordsWithPrefix(prefix: prefix)
-        return cities(for: words)
+    func insert(city: City) {
+        let cityString = city.fullName.lowercased()
+        // Insert string into word trie
+        insert(word: cityString)
+        // Insert into City lookup dictionary
+        if var dupCity = cityMap[cityString] {
+            dupCity.append(city)
+            cityMap.updateValue(dupCity, forKey: cityString)
+        } else {
+            cityMap[cityString] = [city]
+        }
+        cityCount += 1
     }
     
-    private func cities(for words: [String]) -> [City] {
-        let new: [City] = words.compactMap { newCities[$0] }
-        let existing: [City] = words.compactMap { duplicateNames[$0] }.flatMap { $0 }
-        return (new + existing).sorted(by: { $0.name < $1.name })
+    private func fetch(with prefix: String, fetchTask: DispatchWorkItem?, completion: @escaping ([City]?) -> Void) {
+        if prefix.isEmpty {
+            completion(self.allCities)
+        } else {
+            findWordsWithPrefix(prefix: prefix) { words in
+                guard let words = words, fetchTask === self.fetchTask, !(fetchTask?.isCancelled ?? true) else {
+                    completion(nil)
+                    return
+                }
+                self.cities(for: words) { cities in
+                    guard fetchTask === self.fetchTask, !(fetchTask?.isCancelled ?? true) else {
+                        completion(nil)
+                        return
+                    }
+                    completion(cities)
+                }
+            }
+        }
+    }
+    
+    public func executeFetchTask(with prefix: String, completion: @escaping ([City]?) -> Void) {
+        fetchTask?.cancel()
+        fetchTask = DispatchWorkItem { [weak self] in
+            self?.fetch(with: prefix, fetchTask: self?.fetchTask, completion: completion)
+        }
+        DispatchQueue.global().async(execute: fetchTask!)
+    }
+    
+    private func cities(for words: [String], completion: ([City]?) -> Void) {
+        let cities: [City] = words
+            .compactMap { cityMap[$0] }
+            .flatMap { $0 }
+            .sorted(by: { $0.fullName < $1.fullName })
+        completion(cities)
     }
     
 }
