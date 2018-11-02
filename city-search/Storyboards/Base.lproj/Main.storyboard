@@ -73,7 +73,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqq-bd-h6H">
                                 <rect key="frame" x="137.5" y="322" width="100" height="43"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="0tt-Nd-tVi"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="0tt-Nd-tVi"/>
                                     <constraint firstAttribute="height" constant="43" id="vNd-3K-lUQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
@@ -81,7 +81,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.79242008919999996" green="0.77764272690000003" blue="0.72704917189999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2TS-Eq-uKg" firstAttribute="centerX" secondItem="pdK-Oo-F8o" secondAttribute="centerX" id="2FH-kw-Fye"/>
                             <constraint firstItem="2TS-Eq-uKg" firstAttribute="top" secondItem="pdK-Oo-F8o" secondAttribute="top" constant="173" id="KdN-Df-T58"/>
@@ -121,6 +121,8 @@
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="City" translatesAutoresizingMaskIntoConstraints="NO" id="OVM-q1-bNy">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <color key="backgroundColor" red="0.79242008919999996" green="0.77764272690000003" blue="0.72704917189999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.79242008919999996" green="0.77764272690000003" blue="0.72704917189999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits" textContentType="address-level1+2"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mWd-TU-tkW"/>
@@ -128,7 +130,7 @@
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8my-0f-0lR">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.79242008919999996" green="0.77764272690000003" blue="0.72704917189999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCell" textLabel="VXx-5B-cFc" detailTextLabel="Fol-rS-WoI" style="IBUITableViewCellStyleSubtitle" id="abX-uV-CRe">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -153,6 +155,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.90469007655448719" green="0.89336903942558943" blue="0.83541698462109848" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -173,7 +176,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="City Search" id="7I1-ja-plS"/>
+                    <navigationItem key="navigationItem" title="City Search" id="7I1-ja-plS">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hvL-6Z-cwA"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="OVM-q1-bNy" id="53a-BV-oat"/>
                         <outlet property="tableView" destination="8my-0f-0lR" id="Y1c-vH-qp6"/>
@@ -198,10 +203,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="njn-Ue-OWA" firstAttribute="bottom" secondItem="nGd-wE-ole" secondAttribute="bottom" id="Uax-pg-O0T"/>
-                            <constraint firstItem="njn-Ue-OWA" firstAttribute="trailing" secondItem="nGd-wE-ole" secondAttribute="trailing" id="Ykq-J8-1ov"/>
-                            <constraint firstItem="nGd-wE-ole" firstAttribute="leading" secondItem="njn-Ue-OWA" secondAttribute="leading" id="xTe-Go-NWh"/>
-                            <constraint firstItem="njn-Ue-OWA" firstAttribute="top" secondItem="nGd-wE-ole" secondAttribute="top" constant="20" id="zXM-gk-uIt"/>
+                            <constraint firstAttribute="trailing" secondItem="nGd-wE-ole" secondAttribute="trailing" id="QpQ-iW-PNE"/>
+                            <constraint firstItem="nGd-wE-ole" firstAttribute="bottom" secondItem="njn-Ue-OWA" secondAttribute="bottom" id="ay9-A9-K76"/>
+                            <constraint firstItem="nGd-wE-ole" firstAttribute="leading" secondItem="fas-QU-ebk" secondAttribute="leading" id="ewt-Tc-ghA"/>
+                            <constraint firstItem="nGd-wE-ole" firstAttribute="top" secondItem="fas-QU-ebk" secondAttribute="topMargin" constant="-20" id="iK1-os-V7T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="njn-Ue-OWA"/>
                     </view>
@@ -221,6 +226,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jrc-1R-ggy">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.2274509804" green="0.54117647059999996" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
