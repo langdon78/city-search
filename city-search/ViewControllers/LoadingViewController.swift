@@ -9,6 +9,7 @@
 import UIKit
 
 final class LoadingViewController: UIViewController {
+    
     @IBOutlet var dotLabel: [UILabel]!
     @IBOutlet weak var dataFileLabel: UILabel!
     @IBOutlet weak var imageLabel: UILabel!
@@ -60,10 +61,12 @@ final class LoadingViewController: UIViewController {
             let searchViewController = navigationController.topViewController as? SearchViewController else { return }
         searchViewController.cityManager = cityManager
     }
+    
 }
 
 //MARK: - Progress Delegate methods
 extension LoadingViewController: ProgressDelegate {
+    
     func fileLoaded() {
         DispatchQueue.main.async { [weak self] in
             self?.dotLabel.forEach({ $0.isHidden = true })
@@ -119,4 +122,5 @@ extension LoadingViewController: ProgressDelegate {
             timer.invalidate()
         }
     }
+    
 }

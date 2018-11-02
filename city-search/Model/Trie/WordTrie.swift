@@ -32,7 +32,6 @@ class WordTrie {
     /// Attempts to insert word into Trie.
     ///
     /// - Parameter word: the word to be inserted.
-    /// - Returns: outcome of attempted insert
     public func insert(word: String) {
         guard !word.isEmpty else {
             return

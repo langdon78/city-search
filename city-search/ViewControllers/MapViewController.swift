@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 final class MapViewController: UIViewController {
+    
     @IBOutlet weak var mapView: MKMapView!
     
     let mapRegionDistanceMeters: CLLocationDistance = 50000

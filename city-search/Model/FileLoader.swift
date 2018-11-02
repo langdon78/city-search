@@ -8,7 +8,8 @@
 
 import Foundation
 
-class FileLoader {
+final class FileLoader {
+    
     private struct DataFile {
         static var Cities = path(for: "cities", fileExtension: "json")
         
