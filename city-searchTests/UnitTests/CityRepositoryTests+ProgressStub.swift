@@ -9,10 +9,12 @@
 import XCTest
 @testable import city_search
 
-class city_searchTests: XCTestCase {
+class CityRepositoryTests: XCTestCase {
+    
+    var cityRepository: CityRepository!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        cityRepository = CityRepository(data: mockCityData, delegate: nil)
     }
 
     override func tearDown() {

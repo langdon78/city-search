@@ -8,21 +8,24 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController {
+final class LoadingViewController: UIViewController {
     @IBOutlet var dotLabel: [UILabel]!
     @IBOutlet weak var dataFileLabel: UILabel!
     @IBOutlet weak var imageLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var percentLabel: UILabel!
     
-    var cityManager: CityManager? {
+    let searchSegue = "showSearchSegue"
+    
+    var cityManager: CityRepository? {
         didSet {
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "showSearchSegue", sender: nil)
+                self.performSegue(withIdentifier: self.searchSegue, sender: nil)
             }
         }
     }
     
+    //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         progressView.isHidden = true
@@ -30,10 +33,11 @@ class LoadingViewController: UIViewController {
         animateDots()
         DispatchQueue.global().async {
             let data = FileLoader.load()
-            self.cityManager = CityManager(data: data, delegate: self)
+            self.cityManager = CityRepository(data: data, delegate: self)
         }
     }
     
+    // Custom methods
     func animateDots() {
         UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat], animations: {
             let dot = self.dotLabel.first(where: { $0.tag == 3 })
@@ -49,6 +53,7 @@ class LoadingViewController: UIViewController {
         }, completion: nil)
     }
     
+    // Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             let navigationController = segue.destination as? UINavigationController,
@@ -57,6 +62,7 @@ class LoadingViewController: UIViewController {
     }
 }
 
+//MARK: - Progress Delegate methods
 extension LoadingViewController: ProgressDelegate {
     func fileLoaded() {
         DispatchQueue.main.async { [weak self] in
@@ -69,40 +75,48 @@ extension LoadingViewController: ProgressDelegate {
     
     func loadingDataTrie(_ percent: Float) {
         DispatchQueue.main.async { [weak self] in
-            
-            self?.progressView.progress = percent
-            self?.percentLabel.text = "\(Int(percent * 100))%"
-            switch true {
-            case percent < 0.30:
-                self?.dataFileLabel.text = "Optimizing Search Engine"
-            case percent >= 0.30 && percent < 0.85:
-                self?.dataFileLabel.text = "Doing stuff, you wouldn't get it"
-            case percent >= 0.50 && percent < 0.99:
-                self?.dataFileLabel.text = "Maybe grab a bite to eat"
-            default:
-                self?.dataFileLabel.text = "Almost there!!!"
-            }
-            if percent == 1.0 {
-                self?.imageLabel.isHidden = false
-                self?.imageLabel.text = "😀"
-                self?.dotLabel.forEach({ $0.isHidden = false })
-                self?.animateDots()
-                self?.progressView.isHidden = true
-                self?.percentLabel.isHidden = true
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
-                    self?.imageLabel.text = "😴"
-                    timer.invalidate()
-                }
-                Timer.scheduledTimer(withTimeInterval: 6, repeats: false) { timer in
-                    self?.imageLabel.text = "☠️"
-                    timer.invalidate()
-                }
-                Timer.scheduledTimer(withTimeInterval: 9, repeats: false) { timer in
-                    self?.dataFileLabel.text = "AAGGHHH!"
-                    self?.imageLabel.text = "🧟‍♂️"
-                    timer.invalidate()
-                }
-            }
+            self?.showProgressBar(for: percent)
+
+        }
+    }
+    
+    private func showProgressBar(for percent: Float) {
+        progressView.progress = percent
+        percentLabel.text = "\(Int(percent * 100))%"
+        switch true {
+        case percent < 0.30:
+            dataFileLabel.text = "Optimizing Search Engine"
+        case percent >= 0.30 && percent < 0.85:
+            dataFileLabel.text = "Doing stuff, you wouldn't get it"
+        case percent >= 0.50 && percent < 0.99:
+            dataFileLabel.text = "Maybe grab a bite to eat"
+        default:
+            dataFileLabel.text = "Almost there!!!"
+        }
+        if percent == 1.0 {
+            showFinalLoading()
+        }
+    }
+    
+    private func showFinalLoading() {
+        imageLabel.isHidden = false
+        imageLabel.text = "😀"
+        dotLabel.forEach({ $0.isHidden = false })
+        animateDots()
+        progressView.isHidden = true
+        percentLabel.isHidden = true
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] timer in
+            self?.imageLabel.text = "😴"
+            timer.invalidate()
+        }
+        Timer.scheduledTimer(withTimeInterval: 6, repeats: false) { [weak self] timer in
+            self?.imageLabel.text = "☠️"
+            timer.invalidate()
+        }
+        Timer.scheduledTimer(withTimeInterval: 9, repeats: false) { [weak self] timer in
+            self?.dataFileLabel.text = "AAGGHHH!"
+            self?.imageLabel.text = "🧟‍♂️"
+            timer.invalidate()
         }
     }
 }

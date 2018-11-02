@@ -55,36 +55,42 @@ class WordTrieTests: XCTestCase {
         // given
         let prefixString = "a"
         // when
-        let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
-        // then
-        XCTAssertTrue(fetchResult == ["apple"])
+        wordTrie?.findWordsWithPrefix(prefix: prefixString) { fetchResult in
+            // then
+            XCTAssertTrue(fetchResult == ["apple"])
+        }
     }
     
     func testFetchPrefixCaseSensitive() {
         // given
         let prefixString = "A"
         // when
-        let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
-        // then
-        XCTAssertTrue(fetchResult == ["apple"])
+        wordTrie?.findWordsWithPrefix(prefix: prefixString) { fetchResult in
+            // then
+            XCTAssertTrue(fetchResult == ["apple"])
+        }
+
     }
     
     func testFetchPrefixMultipleCharacters() {
         // given
         let prefixString = "App"
         // when
-        let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
-        // then
-        XCTAssertTrue(fetchResult == ["apple"])
+        wordTrie?.findWordsWithPrefix(prefix: prefixString) { fetchResult in
+            // then
+            XCTAssertTrue(fetchResult == ["apple"])
+        }
     }
     
     func testFetchPrefixMultipleMatches() {
         // given
         let prefixString = "C"
         // when
-        let fetchResult = wordTrie?.findWordsWithPrefix(prefix: prefixString)
-        // then
-        XCTAssertTrue(fetchResult?.sorted() == ["carrot","cucumber"])
+        wordTrie?.findWordsWithPrefix(prefix: prefixString) { fetchResult in
+            // then
+            XCTAssertTrue(fetchResult?.sorted() == ["carrot","cucumber"])
+        }
+
     }
 
     private func loadMockData() {

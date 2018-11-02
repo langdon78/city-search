@@ -12,12 +12,12 @@
 		BC2D9B66218A0DC400AE1709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B64218A0DC400AE1709 /* Main.storyboard */; };
 		BC2D9B68218A0DC500AE1709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B67218A0DC500AE1709 /* Assets.xcassets */; };
 		BC2D9B6B218A0DC500AE1709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B69218A0DC500AE1709 /* LaunchScreen.storyboard */; };
-		BC2D9B76218A0DC500AE1709 /* city_searchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B75218A0DC500AE1709 /* city_searchTests.swift */; };
+		BC2D9B76218A0DC500AE1709 /* CityRepositoryTests+ProgressStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B75218A0DC500AE1709 /* CityRepositoryTests+ProgressStub.swift */; };
 		BC2D9B83218A102B00AE1709 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = BC2D9B82218A102B00AE1709 /* cities.json */; };
 		BC2D9B85218A107000AE1709 /* WordTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B84218A107000AE1709 /* WordTrie.swift */; };
 		BC2D9B88218A111200AE1709 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B87218A111200AE1709 /* FileLoader.swift */; };
 		BC2D9B8A218A12BE00AE1709 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B89218A12BE00AE1709 /* City.swift */; };
-		BC2D9B8C218A39D700AE1709 /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8B218A39D700AE1709 /* CityManager.swift */; };
+		BC2D9B8C218A39D700AE1709 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8B218A39D700AE1709 /* CityRepository.swift */; };
 		BC2D9B8E218A3C2600AE1709 /* CharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8D218A3C2600AE1709 /* CharacterNode.swift */; };
 		BC2D9B90218A4AA700AE1709 /* MockCityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */; };
 		BC2D9B93218A5C8B00AE1709 /* WordTrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */; };
@@ -45,13 +45,13 @@
 		BC2D9B6A218A0DC500AE1709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC2D9B6C218A0DC500AE1709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC2D9B71218A0DC500AE1709 /* city-searchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "city-searchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC2D9B75218A0DC500AE1709 /* city_searchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = city_searchTests.swift; sourceTree = "<group>"; };
+		BC2D9B75218A0DC500AE1709 /* CityRepositoryTests+ProgressStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityRepositoryTests+ProgressStub.swift"; sourceTree = "<group>"; };
 		BC2D9B77218A0DC500AE1709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC2D9B82218A102B00AE1709 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		BC2D9B84218A107000AE1709 /* WordTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTrie.swift; sourceTree = "<group>"; };
 		BC2D9B87218A111200AE1709 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
 		BC2D9B89218A12BE00AE1709 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		BC2D9B8B218A39D700AE1709 /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
+		BC2D9B8B218A39D700AE1709 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
 		BC2D9B8D218A3C2600AE1709 /* CharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNode.swift; sourceTree = "<group>"; };
 		BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCityData.swift; sourceTree = "<group>"; };
 		BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTrieTests.swift; sourceTree = "<group>"; };
@@ -100,12 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				BC2D9B86218A107700AE1709 /* Model */,
-				BC2D9B81218A0F8F00AE1709 /* Storyboards */,
 				BC2D9B80218A0F5200AE1709 /* Resources */,
+				BC2D9B81218A0F8F00AE1709 /* Storyboards */,
+				BC496CFB218C93BD008A37B9 /* ViewControllers */,
 				BC2D9B60218A0DC400AE1709 /* AppDelegate.swift */,
-				BC2D9B62218A0DC400AE1709 /* SearchViewController.swift */,
-				BC2D9B96218B6C0200AE1709 /* LoadingViewController.swift */,
-				BC2D9B98218B992E00AE1709 /* MapViewController.swift */,
 			);
 			path = "city-search";
 			sourceTree = "<group>";
@@ -113,11 +111,9 @@
 		BC2D9B74218A0DC500AE1709 /* city-searchTests */ = {
 			isa = PBXGroup;
 			children = (
-				BC2D9B75218A0DC500AE1709 /* city_searchTests.swift */,
+				BC496CFA218C9382008A37B9 /* UnitTests */,
+				BC496CF9218C9376008A37B9 /* Mocks */,
 				BC2D9B77218A0DC500AE1709 /* Info.plist */,
-				BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */,
-				BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */,
-				BC2D9B94218A61E800AE1709 /* MockWords.swift */,
 			);
 			path = "city-searchTests";
 			sourceTree = "<group>";
@@ -144,13 +140,49 @@
 		BC2D9B86218A107700AE1709 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC2D9B8B218A39D700AE1709 /* CityManager.swift */,
+				BC496CF8218C8C55008A37B9 /* Trie */,
+				BC2D9B8B218A39D700AE1709 /* CityRepository.swift */,
 				BC2D9B89218A12BE00AE1709 /* City.swift */,
 				BC2D9B87218A111200AE1709 /* FileLoader.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BC496CF8218C8C55008A37B9 /* Trie */ = {
+			isa = PBXGroup;
+			children = (
 				BC2D9B8D218A3C2600AE1709 /* CharacterNode.swift */,
 				BC2D9B84218A107000AE1709 /* WordTrie.swift */,
 			);
-			path = Model;
+			path = Trie;
+			sourceTree = "<group>";
+		};
+		BC496CF9218C9376008A37B9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				BC2D9B94218A61E800AE1709 /* MockWords.swift */,
+				BC2D9B8F218A4AA700AE1709 /* MockCityData.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		BC496CFA218C9382008A37B9 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				BC2D9B75218A0DC500AE1709 /* CityRepositoryTests+ProgressStub.swift */,
+				BC2D9B92218A5C8B00AE1709 /* WordTrieTests.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		BC496CFB218C93BD008A37B9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC2D9B96218B6C0200AE1709 /* LoadingViewController.swift */,
+				BC2D9B98218B992E00AE1709 /* MapViewController.swift */,
+				BC2D9B62218A0DC400AE1709 /* SearchViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +293,7 @@
 				BC2D9B97218B6C0200AE1709 /* LoadingViewController.swift in Sources */,
 				BC2D9B99218B992E00AE1709 /* MapViewController.swift in Sources */,
 				BC2D9B88218A111200AE1709 /* FileLoader.swift in Sources */,
-				BC2D9B8C218A39D700AE1709 /* CityManager.swift in Sources */,
+				BC2D9B8C218A39D700AE1709 /* CityRepository.swift in Sources */,
 				BC2D9B61218A0DC400AE1709 /* AppDelegate.swift in Sources */,
 				BC2D9B8E218A3C2600AE1709 /* CharacterNode.swift in Sources */,
 			);
@@ -273,7 +305,7 @@
 			files = (
 				BC2D9B90218A4AA700AE1709 /* MockCityData.swift in Sources */,
 				BC2D9B93218A5C8B00AE1709 /* WordTrieTests.swift in Sources */,
-				BC2D9B76218A0DC500AE1709 /* city_searchTests.swift in Sources */,
+				BC2D9B76218A0DC500AE1709 /* CityRepositoryTests+ProgressStub.swift in Sources */,
 				BC2D9B95218A61E800AE1709 /* MockWords.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

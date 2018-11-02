@@ -13,10 +13,10 @@ protocol ProgressDelegate {
     func loadingDataTrie(_ percent: Float)
 }
 
-class CityManager: WordTrie {
+class CityRepository: WordTrie {
     var fetchTask: DispatchWorkItem?
     
-    private var cityMap: [String: [City]] = [:]
+    private var cityLookup: [String: [City]] = [:]
     private var cityCount: Int = 0
     
     var delegate: ProgressDelegate?
@@ -48,12 +48,10 @@ class CityManager: WordTrie {
     func insert(cities: [City]) {
         for city in cities {
             self.insert(city: city)
+            self.allCities.append(city)
             delegate?.loadingDataTrie(Float(cityCount) / Float(cities.count))
         }
-        self.cities(for: words) { [weak self] cities in
-            guard let cities = cities else { return }
-            self?.allCities = cities
-        }
+        allCities.sort(by: { $0.fullName < $1.fullName })
     }
     
     func insert(city: City) {
@@ -61,11 +59,11 @@ class CityManager: WordTrie {
         // Insert string into word trie
         insert(word: cityString)
         // Insert into City lookup dictionary
-        if var dupCity = cityMap[cityString] {
+        if var dupCity = cityLookup[cityString] {
             dupCity.append(city)
-            cityMap.updateValue(dupCity, forKey: cityString)
+            cityLookup.updateValue(dupCity, forKey: cityString)
         } else {
-            cityMap[cityString] = [city]
+            cityLookup[cityString] = [city]
         }
         cityCount += 1
     }
@@ -100,7 +98,7 @@ class CityManager: WordTrie {
     
     private func cities(for words: [String], completion: ([City]?) -> Void) {
         let cities: [City] = words
-            .compactMap { cityMap[$0] }
+            .compactMap { cityLookup[$0] }
             .flatMap { $0 }
             .sorted(by: { $0.fullName < $1.fullName })
         completion(cities)

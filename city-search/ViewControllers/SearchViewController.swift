@@ -8,11 +8,15 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var cityManager: CityManager?
+    let cityCellName = "cityCell"
+    let mapSegueName = "mapSegue"
+    
+    var cityManager: CityRepository?
     var displayedCities: [City] = []
     
     override func viewDidLoad() {
@@ -24,21 +28,42 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let mapViewController = segue.destination as? MapViewController,
         let indexPath = sender as? IndexPath else { return }
-        mapViewController.coordinates = displayedCities[indexPath.row].coord
+        mapViewController.city = displayedCities[indexPath.row]
     }
+    
 }
 
-// MARK: - UITableView Data Source
+//MARK: - UIScrollViewDelegate
+extension SearchViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
+}
+
+// MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedCities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell") else { return UITableViewCell() }
-        cell.textLabel?.text = displayedCities[indexPath.row].fullName
-        cell.detailTextLabel?.text = displayedCities[indexPath.row].coordinates
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cityCellName) else { return UITableViewCell() }
+        let city = displayedCities[indexPath.row]
+        cell.textLabel?.text = city.fullName
+        cell.detailTextLabel?.text = city.coordinates
         return cell
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: mapSegueName, sender: indexPath)
     }
     
 }
@@ -58,12 +83,5 @@ extension SearchViewController: UISearchBarDelegate {
             self?.displayedCities = cities
             self?.tableView.reloadData()
         }
-    }
-}
-
-extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "mapSegue", sender: indexPath)
     }
 }

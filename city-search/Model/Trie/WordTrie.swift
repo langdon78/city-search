@@ -64,7 +64,7 @@ class WordTrie {
     ///   - prefix: the letters for word prefix
     /// - Returns: the words in the subtrie that start with prefix
     public func findWordsWithPrefix(prefix: String, completion: @escaping ([String]?) -> Void) {
-        var words = [String]()
+        var words: [String] = []
         let prefixLowerCased = prefix.lowercased()
         if let lastNode = self.findLastNodeOf(word: prefixLowerCased) {
             if lastNode.isEnd {
