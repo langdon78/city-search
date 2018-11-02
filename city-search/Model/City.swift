@@ -24,6 +24,6 @@ struct City: Codable {
     }
     
     var coordinates: String {
-        return "Latitude: \(coord.lat)  Longitude: \(coord.lon)"
+        return "Longitude: \(coord.lon)  Latitude: \(coord.lat)"
     }
 }
