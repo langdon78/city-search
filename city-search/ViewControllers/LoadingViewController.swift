@@ -86,18 +86,16 @@ extension LoadingViewController: ProgressDelegate {
     private func showProgressBar(for percent: Float) {
         progressView.progress = percent
         percentLabel.text = "\(Int(percent * 100))%"
-        switch true {
-        case percent < 0.30:
+        switch percent {
+        case 0..<0.30:
             dataFileLabel.text = "Optimizing Search Engine"
-        case percent >= 0.30 && percent < 0.85:
-            dataFileLabel.text = "Doing stuff, you wouldn't get it"
-        case percent >= 0.50 && percent < 0.99:
+        case 0.30..<0.85:
+            dataFileLabel.text = "Doing some other stuff"
+        case 0.50...0.99:
             dataFileLabel.text = "Maybe grab a bite to eat"
         default:
-            dataFileLabel.text = "Almost there!!!"
-        }
-        if percent == 1.0 {
             showFinalLoading()
+            dataFileLabel.text = "Almost there!!!"
         }
     }
     
